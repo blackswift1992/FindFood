@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495FDBA929CB61A8000B06A0 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 495FDBA829CB61A8000B06A0 /* Inceptionv3.mlmodel */; };
 		496521E229CB58980089DF3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496521E129CB58980089DF3C /* AppDelegate.swift */; };
 		496521E429CB58980089DF3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496521E329CB58980089DF3C /* SceneDelegate.swift */; };
 		496521E629CB58980089DF3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496521E529CB58980089DF3C /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		495FDBA829CB61A8000B06A0 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		496521DE29CB58980089DF3C /* FindFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496521E129CB58980089DF3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496521E329CB58980089DF3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				496521E529CB58980089DF3C /* ViewController.swift */,
 				496521E729CB58980089DF3C /* Main.storyboard */,
 				496521EA29CB58990089DF3C /* Assets.xcassets */,
+				495FDBA829CB61A8000B06A0 /* Inceptionv3.mlmodel */,
 				496521EC29CB58990089DF3C /* LaunchScreen.storyboard */,
 				496521EF29CB58990089DF3C /* Info.plist */,
 			);
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				496521E629CB58980089DF3C /* ViewController.swift in Sources */,
+				495FDBA929CB61A8000B06A0 /* Inceptionv3.mlmodel in Sources */,
 				496521E229CB58980089DF3C /* AppDelegate.swift in Sources */,
 				496521E429CB58980089DF3C /* SceneDelegate.swift in Sources */,
 			);
