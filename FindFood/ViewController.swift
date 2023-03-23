@@ -27,9 +27,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             cameraImageView.image = image
+            
+            guard let ciimage = CIImage(image: image) else {
+                fatalError("Could not convert into CIImage")
+            }
+            
+            detect(image: ciimage)
         }
         
         imagePicker.dismiss(animated: true)
+    }
+    
+    private func detect(image: CIImage) {
+        guard let model = try? VNCoreMLModel(for: MLModel(contentsOf: Inceptionv3.urlOfModelInThisBundle)) else {
+            fatalError("Loading CoreML Model failed")
+        }
+        
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            guard let results = request.results as? [VNClassificationObservation] else {
+                fatalError("Model failed to process image.")
+            }
+            
+            print(results)
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            print(error)
+        }
     }
     
     @IBAction private func cameraTapped(_ sender: UIBarButtonItem) {
