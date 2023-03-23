@@ -10,8 +10,9 @@ import CoreML
 import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     @IBOutlet private weak var resultMessage: UILabel!
+    @IBOutlet private weak var alternativeResultMessage: UILabel!
+    
     private let imagePicker = UIImagePickerController()
     
     @IBOutlet private weak var cameraImageView: UIImageView!
@@ -48,13 +49,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 fatalError("Model failed to process image.")
             }
             
-            print(results)
-            
-            if let firstResult = results.first {
-                self?.resultMessage.text = firstResult.identifier
-            }
-            
-            
+            self?.resultMessage.text = "\(Int(Double(results[0].confidence) * 100))%: \(results[0].identifier)"
+            self?.alternativeResultMessage.text = "\(Int(Double(results[1].confidence) * 100))%: \(results[1].identifier)"
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -69,6 +65,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction private func cameraTapped(_ sender: UIBarButtonItem) {
         present(imagePicker , animated: true)
     }
-    
 }
 
