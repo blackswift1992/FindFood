@@ -1,2 +1,2 @@
-# FindFood
-This is a simple app that uses CoreML.
+# ObjectDetector
+This is a simple educational app that uses CoreML.
