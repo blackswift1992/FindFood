@@ -11,6 +11,7 @@ import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet private weak var resultMessage: UILabel!
     private let imagePicker = UIImagePickerController()
     
     @IBOutlet private weak var cameraImageView: UIImageView!
@@ -21,7 +22,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = false
-        
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -43,12 +43,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             fatalError("Loading CoreML Model failed")
         }
         
-        let request = VNCoreMLRequest(model: model) { (request, error) in
+        let request = VNCoreMLRequest(model: model) { [weak self] (request, error) in
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("Model failed to process image.")
             }
             
             print(results)
+            
+            if let firstResult = results.first {
+                self?.resultMessage.text = firstResult.identifier
+            }
+            
+            
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
